@@ -6,7 +6,7 @@ const hours = [
 ]
 
 const contactDetails = [
-  { label: 'Phone',        value: '0113 555 0188' },
+  { label: 'Phone',        value: '0117 401 6517' },
   { label: 'Contact',        value: 'contact@khao.restaurant' },
   { label: 'Instagram',    value: '@khao.restaurant' },
 ]
