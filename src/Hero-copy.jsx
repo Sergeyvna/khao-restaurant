@@ -9,15 +9,33 @@ export default function Hero() {
 
   return (
     <div className="hero">
+      <div class="gradient-bg">
+  <svg xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <filter id="goo">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+        <feColorMatrix in="blur" mode="matrix"
+          values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8" result="goo" />
+        <feBlend in="SourceGraphic" in2="goo" />
+      </filter>
+    </defs>
+  </svg>
+  <div class="gradients-container">
+    <div class="g1"></div>
+    <div class="g2"></div>
+    <div class="g3"></div>
+    <div class="g4"></div>
+    <div class="g5"></div>
+    <div class="interactive"></div>
+  </div>
+</div>
       <div className="card hero-main">
         <div>
-          <h1>KHAO</h1>
-          <div className="eyebrow">EAT ◇ RICE ◇ SHARE</div>
+          <div className="eyebrow">Modern restaurant</div>
+          <h1>Seasonal dining with a refined edge.</h1>
           <p className="lead">
-            Khao means ear in Hindi and rice in Thai.
-          </p>
-          <p className="lead">
-            At Khao, we bring together global flavours, refined techniques and the finest seasonal ingredients to create dished that are bold, unexpected and made to be shared.
+            Enter your text here. This is a great spot to describe your restaurant,
+            share your story, or highlight what makes you unique.
           </p>
           <div className="actions">
             <a className="btn primary" href="#menu">Browse Menu</a>
