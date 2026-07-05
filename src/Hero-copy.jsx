@@ -29,13 +29,16 @@ export default function Hero() {
     <div class="interactive"></div>
   </div>
 </div>
+       <div className="hero">
       <div className="card hero-main">
         <div>
-          <div className="eyebrow">Modern restaurant</div>
-          <h1>Seasonal dining with a refined edge.</h1>
+          <h1>KHAO</h1>
+          <div className="eyebrow">EAT ◇ RICE ◇ SHARE</div>
           <p className="lead">
-            Enter your text here. This is a great spot to describe your restaurant,
-            share your story, or highlight what makes you unique.
+            Khao means ear in Hindi and rice in Thai.
+          </p>
+          <p className="lead">
+            At Khao, we bring together global flavours, refined techniques and the finest seasonal ingredients to create dished that are bold, unexpected and made to be shared.
           </p>
           <div className="actions">
             <a className="btn primary" href="#menu">Browse Menu</a>
@@ -43,6 +46,8 @@ export default function Hero() {
           </div>
         </div>
       </div>
+      </div>
+
 
       <div className="hero-aside">
         <div className="card image">

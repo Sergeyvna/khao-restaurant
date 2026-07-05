@@ -14,7 +14,7 @@ export default function Hero() {
           <h1>KHAO</h1>
           <div className="eyebrow">EAT ◇ RICE ◇ SHARE</div>
           <p className="lead">
-            Khao means ear in Hindi and rice in Thai.
+            Khao means eat in Hindi and rice in Thai.
           </p>
           <p className="lead">
             At Khao, we bring together global flavours, refined techniques and the finest seasonal ingredients to create dished that are bold, unexpected and made to be shared.
@@ -28,7 +28,7 @@ export default function Hero() {
 
       <div className="hero-aside">
         <div className="card image">
-          <div className="badge">Fine dining • Cocktails</div>
+          {/* <div className="badge">Fine dining • Cocktails</div> */}
         </div>
 
         <button

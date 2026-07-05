@@ -74,10 +74,10 @@ const categories = [
         ],
       },
       {
-        heading: 'From the Kitchen',
+        heading: 'FROM THE KITCHEN',
         subsections: [
           {
-            heading: 'Stone Baked Pizza',
+            heading: 'STONE-BAKED PIZZA',
             items: [
               {
               id: `pizza-1`,
@@ -134,7 +134,7 @@ const categories = [
             },]
       },
       {
-        heading: 'Biryani',
+        heading: 'BIRYANI',
         items: [{
           id: `biryani-1`,
           name: `Chicken`,
@@ -152,7 +152,7 @@ const categories = [
         ]
       },
       {
-        heading: 'Sides',
+        heading: 'SIDES',
         items: [{
           id: `side-1`,
           name: `Pilao Rice`,
@@ -197,7 +197,7 @@ const categories = [
         },]
       },
       {
-        heading: 'Desserts',
+        heading: 'DESSERTS',
         items: [{
           id: `dessert-1`,
           name: `Mango & Pistachio Cream`,
