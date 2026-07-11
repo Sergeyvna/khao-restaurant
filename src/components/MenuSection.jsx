@@ -1,18 +1,5 @@
 import { useState } from 'react'
 
-/*
-  ============================================================
-  PLACEHOLDER DATA — replace names / descriptions / prices /
-  kcal / allergens with your real menu. Counts match what you
-  described:
-    Starters        x6
-    From the Kitchen: Stone Baked Pizza x2 + 5 other items
-    Biryani         x2
-    Sides           x6
-    Desserts        x3
-    Friday Special  x1 (shown as a banner, not in the accordion)
-  ============================================================
-*/
 
 const fridaySpecial = {
   name: 'Pan-Fried Cod & Chips',
@@ -368,12 +355,15 @@ const categories = [
       ],
   },
 ]
+
+
+
 function MenuItem({ item }) {
   return (
     <div className="item">
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '12px' }}>
         <div style={{ flex: 1 }}>
-          <h3 style={{ margin: '0 0 6px', fontSize: '1.05rem' }}>{item.name}</h3>
+          <h3 style={{ margin: '0 0 6px', fontSize: '1.4rem', fontFamily: "'Cormorant Garamond', serif" }}>{item.name}</h3>
           <p style={{ margin: 0, color: 'var(--muted)', lineHeight: 1.7, fontSize: '0.92rem' }}>{item.description}</p>
         </div>
         <div style={{ textAlign: 'right', flexShrink: 0 }}>
@@ -431,7 +421,7 @@ function FridaySpecialBanner({ item }) {
       </div>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '12px' }}>
         <div style={{ flex: 1 }}>
-          <h3 style={{ margin: '0 0 6px', fontSize: '1.1rem' }}>{item.name}</h3>
+          <h3 style={{ margin: '0 0 6px', fontSize: '1.4rem', fontFamily: "'Cormorant Garamond', serif" }}>{item.name}</h3>
           <p style={{ margin: 0, color: 'var(--muted)', lineHeight: 1.7, fontSize: '0.92rem' }}>{item.description}</p>
         </div>
         <div style={{ textAlign: 'right', flexShrink: 0 }}>
@@ -470,7 +460,7 @@ function LunchSetContent({ category }) {
             }}
           >
             <div>
-              <h3 style={{ margin: '0 0 4px', fontSize: '1.02rem' }}>{item.name}</h3>
+              <h3 style={{ margin: '0 0 4px', fontSize: '1.4rem', fontFamily: "'Cormorant Garamond', serif" }}>{item.name}</h3>
               <p style={{ margin: 0, color: 'var(--muted)', lineHeight: 1.6, fontSize: '0.9rem' }}>{item.description}</p>
             </div>
             <div style={{ color: 'var(--accent)', fontWeight: 700, fontSize: '1rem', flexShrink: 0 }}>{item.price}</div>
@@ -513,7 +503,7 @@ function SundayRoastContent({ category }) {
             }}
           >
             <div>
-              <h3 style={{ margin: '0 0 4px', fontSize: '1.02rem' }}>{item.name}</h3>
+              <h3 style={{ margin: '0 0 4px', fontSize: '1.4rem', fontFamily: "'Cormorant Garamond', serif" }}>{item.name}</h3>
               <p style={{ margin: 0, color: 'var(--muted)', lineHeight: 1.6, fontSize: '0.9rem' }}>{item.description}</p>
             </div>
             <div style={{ color: 'var(--accent)', fontWeight: 700, fontSize: '1rem', flexShrink: 0 }}>{item.price}</div>
@@ -561,8 +551,9 @@ function CategoryContent({ category }) {
                     cursor: 'pointer',
                     padding: '18px 0',
                     color: 'inherit',
-                    fontSize: '1.3rem',
+                    fontSize: '1.5rem',
                     fontWeight: 700,
+                    fontFamily: "'Cormorant Garamond', serif",
                     textAlign: 'left',
                   }}
                 >
