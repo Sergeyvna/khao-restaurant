@@ -521,12 +521,12 @@ function CategoryContent({ category }) {
   const [openIndex, setOpenIndex] = useState(0)
  
   // Cocktails gets a 2-column grid instead of the default 3-column ".menu" grid.
-  const gridStyle = category.key === 'cocktails' ? { gridTemplateColumns: 'repeat(2, 1fr)' } : undefined
+  const menuClassName = category.key === 'cocktails' ? 'menu-2col' : 'menu'
  
   return (
     <div>
       {category.items && (
-        <div className="menu" style={gridStyle}>
+        <div className={menuClassName}>
           {category.items.map((item) => (
             <MenuItem key={item.id} item={item} />
           ))}
@@ -572,7 +572,7 @@ function CategoryContent({ category }) {
                 }}
               >
                 {group.items && (
-                  <div className="menu">
+                  <div className={menuClassName}>
                     {group.items.map((item) => (
                       <MenuItem key={item.id} item={item} />
                     ))}
@@ -592,7 +592,7 @@ function CategoryContent({ category }) {
                       >
                         {sub.heading}
                       </div>
-                      <div className="menu">
+                      <div className={menuClassName}>
                         {sub.items.map((item) => (
                           <MenuItem key={item.id} item={item} />
                         ))}
