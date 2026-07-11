@@ -295,19 +295,79 @@ const categories = [
   {
     key: 'cocktails',
     label: 'Cocktails',
-    items: Array.from({ length: 6 }, (_, i) => ({
-      id: `cocktail-${i + 1}`,
-      name: `Cocktail ${i + 1}`,
-      description: 'Short description.',
-      details: 'Longer description.',
-      allergens: [],
-      dietary: [],
-      price: '£0',
-      kcal: '0 kcal',
-    })),
+    items:[{
+          id: `cocktail-1`,
+          name: `LET THAT MANGO`,
+          description: 'Havana club 3, mango, lime, mint, soda',
+          dietary: [],
+          price: '£14',
+        },
+        {
+          id: `cocktail-2`,
+          name: `ISLAND MAAN`,
+          description: 'Havana club 3, Roku gin, ketel one, olmeca atlos, triple sec, citrus, cola',
+          dietary: [],
+          price: '£18',
+        },
+        {
+          id: `cocktail-3`,
+          name: `DARK CLOUDS`,
+          description: 'Old monk, ginger beer, lime',
+          dietary: [],
+          price: '£14',
+        },
+         {
+          id: `cocktail-4`,
+          name: `PASSIONFRUIT DAIQUIRI`,
+          description: 'Havana club 3, passionfruit, lime',
+          dietary: [],
+          price: '£15',
+        },
+         {
+          id: `cocktail-5`,
+          name: `TOKYO GUAVA FIZZ`,
+          description: 'Roku gin, guava, lime, soda',
+          dietary: [],
+          price: '£14',
+        },
+         {
+          id: `cocktail-6`,
+          name: `RASTA PUNCH`,
+          description: 'Appleton estate 8, old monk, pineapple, orange, lime',
+          dietary: [],
+          price: '£15',
+        },
+         {
+          id: `cocktail-7`,
+          name: `MAI TAI`,
+          description: 'Appleton estate 8, almond, citrus',
+          dietary: [],
+          price: '£15',
+        },
+         {
+          id: `cocktail-8`,
+          name: `TAMA-RITA`,
+          description: 'Olmeca atlos plate, tamarind, lime, chilli salt',
+          dietary: [],
+          price: '£16',
+        },
+        {
+          id: `cocktail-9`,
+          name: `CC MARTINI`,
+          description: 'Ketel one, coconut cream, cardamom',
+          dietary: [],
+          price: '£15',
+        },
+        {
+          id: `cocktail-10`,
+          name: `BADDIE`,
+          description: 'Roku gin, apple, lemon, grenadine',
+          dietary: [],
+          price: '£14',
+        },
+      ],
   },
 ]
-
 function MenuItem({ item }) {
   return (
     <div className="item">
@@ -321,7 +381,7 @@ function MenuItem({ item }) {
           <div style={{ color: 'var(--muted)', fontSize: '0.78rem', marginTop: '2px' }}>{item.kcal}</div>
         </div>
       </div>
-
+ 
       {item.dietary.length > 0 && (
         <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', marginTop: '10px' }}>
           {item.dietary.map((tag) => (
@@ -345,7 +405,7 @@ function MenuItem({ item }) {
     </div>
   )
 }
-
+ 
 function FridaySpecialBanner({ item }) {
   return (
     <div
@@ -382,7 +442,7 @@ function FridaySpecialBanner({ item }) {
     </div>
   )
 }
-
+ 
 function LunchSetContent({ category }) {
   return (
     <div>
@@ -390,12 +450,12 @@ function LunchSetContent({ category }) {
         {category.availability}
       </p>
       <div style={{ borderTop: '1px solid var(--line)', marginBottom: '16px' }} />
-
+ 
       <p style={{ margin: '0 0 16px', color: 'var(--muted)', fontSize: '0.92rem', lineHeight: 1.7 }}>
         {category.intro}
       </p>
       <div style={{ borderTop: '1px solid var(--line)', marginBottom: '20px' }} />
-
+ 
       <div>
         {category.items.map((item) => (
           <div
@@ -417,7 +477,7 @@ function LunchSetContent({ category }) {
           </div>
         ))}
       </div>
-
+ 
       {category.footer && (
         <p style={{ margin: '20px 0 0', color: 'var(--muted)', fontSize: '0.85rem', fontStyle: 'italic' }}>
           {category.footer}
@@ -426,19 +486,19 @@ function LunchSetContent({ category }) {
     </div>
   )
 }
-
+ 
 function SundayRoastContent({ category }) {
   return (
     <div>
       <p style={{ margin: '0 0 16px', color: 'var(--accent)', fontWeight: 600, fontSize: '0.95rem' }}>
         {category.availability}
       </p>
-
+ 
       <p style={{ margin: '0 0 16px', color: 'var(--muted)', fontSize: '0.92rem', lineHeight: 1.7 }}>
         {category.intro}
       </p>
       <div style={{ borderTop: '1px solid var(--line)', marginBottom: '20px' }} />
-
+ 
       <div>
         {category.items.map((item) => (
           <div
@@ -463,70 +523,99 @@ function SundayRoastContent({ category }) {
     </div>
   )
 }
-
-
-
+ 
 function CategoryContent({ category }) {
+  // For categories split into subgroups (Main Menu), each subgroup is
+  // collapsible so it doesn't dump the whole menu on screen at once —
+  // mainly to keep things manageable on mobile. First subgroup starts open.
+  const [openIndex, setOpenIndex] = useState(0)
+ 
+  // Cocktails gets a 2-column grid instead of the default 3-column ".menu" grid.
+  const gridStyle = category.key === 'cocktails' ? { gridTemplateColumns: 'repeat(2, 1fr)' } : undefined
+ 
   return (
     <div>
       {category.items && (
-        <div className="menu">
+        <div className="menu" style={gridStyle}>
           {category.items.map((item) => (
             <MenuItem key={item.id} item={item} />
           ))}
         </div>
       )}
-
+ 
       {category.subgroups &&
-        category.subgroups.map((group, gi) => (
-          <div key={gi} style={{ marginBottom: '40px' }}>
-            {group.heading && (
+        category.subgroups.map((group, gi) => {
+          const isOpen = openIndex === gi
+          return (
+            <div key={gi} style={{ borderBottom: '1px solid var(--line)' }}>
+              {group.heading && (
+                <button
+                  onClick={() => setOpenIndex(isOpen ? -1 : gi)}
+                  style={{
+                    width: '100%',
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    background: 'none',
+                    border: 'none',
+                    cursor: 'pointer',
+                    padding: '18px 0',
+                    color: 'inherit',
+                    fontSize: '1.3rem',
+                    fontWeight: 700,
+                    textAlign: 'left',
+                  }}
+                >
+                  {group.heading}
+                  <span style={{ color: 'var(--accent)', fontSize: '1.4rem', lineHeight: 1 }}>{isOpen ? '−' : '+'}</span>
+                </button>
+              )}
+ 
               <div
                 style={{
-                  fontSize: '1.3rem',
-                  fontWeight: 700,
-                  marginBottom: '18px',
-                  paddingBottom: '10px',
-                  borderBottom: '2px solid var(--accent)',
+                  overflow: 'hidden',
+                  maxHeight: isOpen ? '8000px' : '0',
+                  opacity: isOpen ? 1 : 0,
+                  transition: 'max-height 0.4s ease, opacity 0.3s ease',
+                  paddingBottom: isOpen ? '32px' : '0',
                 }}
               >
-                {group.heading}
-              </div>
-            )}
-            {group.items && (
-              <div className="menu">
-                {group.items.map((item) => (
-                  <MenuItem key={item.id} item={item} />
-                ))}
-              </div>
-            )}
-
-            {group.subsections &&
-              group.subsections.map((sub, si) => (
-                <div key={si} style={{ marginTop: group.items ? '28px' : 0 }}>
-                  <div
-                    style={{
-                      fontSize: '0.95rem',
-                      fontWeight: 600,
-                      color: 'var(--muted)',
-                      marginBottom: '12px',
-                    }}
-                  >
-                    {sub.heading}
-                  </div>
+                {group.items && (
                   <div className="menu">
-                    {sub.items.map((item) => (
+                    {group.items.map((item) => (
                       <MenuItem key={item.id} item={item} />
                     ))}
                   </div>
-                </div>
-              ))}
-          </div>
-        ))}
+                )}
+ 
+                {group.subsections &&
+                  group.subsections.map((sub, si) => (
+                    <div key={si} style={{ marginTop: group.items ? '28px' : 0 }}>
+                      <div
+                        style={{
+                          fontSize: '0.95rem',
+                          fontWeight: 600,
+                          color: 'var(--muted)',
+                          marginBottom: '12px',
+                        }}
+                      >
+                        {sub.heading}
+                      </div>
+                      <div className="menu">
+                        {sub.items.map((item) => (
+                          <MenuItem key={item.id} item={item} />
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+              </div>
+            </div>
+          )
+        })}
     </div>
   )
 }
-
+ 
 function DietaryKey() {
   const entries = [
     { tag: 'GF', label: 'Gluten-free' },
@@ -534,7 +623,7 @@ function DietaryKey() {
     { tag: 'NF', label: 'Nut-free' },
     { tag: 'V', label: 'Vegan' },
   ]
-
+ 
   return (
     <div style={{ marginTop: '48px', paddingTop: '24px', borderTop: '1px solid var(--line)' }}>
       <div
@@ -571,19 +660,19 @@ function DietaryKey() {
     </div>
   )
 }
-
+ 
 export default function MenuSection() {
   const [activeKey, setActiveKey] = useState(categories[0].key)
   const activeCategory = categories.find((c) => c.key === activeKey)
-
+ 
   return (
     <section id="menu">
       <div className="section-title">
         <h2>Menu</h2>
       </div>
-
+ 
       <FridaySpecialBanner item={fridaySpecial} />
-
+ 
       {/* tab pills — only the selected category renders below */}
       <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginBottom: '32px' }}>
         {categories.map((c) => (
@@ -607,16 +696,15 @@ export default function MenuSection() {
           </button>
         ))}
       </div>
-
+ 
       {activeCategory.key === 'lunch-set' ? (
-          <LunchSetContent category={activeCategory} />
-        ) : activeCategory.key === 'sunday-roast' ? (
-          <SundayRoastContent category={activeCategory} />
-        ) : (
-          <CategoryContent category={activeCategory} />
-        )
-      }
-
+        <LunchSetContent category={activeCategory} />
+      ) : activeCategory.key === 'sunday-roast' ? (
+        <SundayRoastContent category={activeCategory} />
+      ) : (
+        <CategoryContent category={activeCategory} />
+      )}
+ 
       <DietaryKey />
     </section>
   )
