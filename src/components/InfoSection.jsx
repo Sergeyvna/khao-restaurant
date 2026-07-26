@@ -1,14 +1,14 @@
 const hours = [
-  { days: 'Mon – Thu', time: '12:00 – 22:00' },
-  { days: 'Friday',    time: '12:00 – 23:00' },
-  { days: 'Saturday',  time: '10:00 – 23:00' },
-  { days: 'Sunday',    time: '10:00 – 20:00' },
+  { day: 'Monday',    times: ['11 – 1 pm', '5 – 10 pm'] },
+  { day: 'Tuesday',   times: ['Closed'] },
+  { day: 'Wed - Sat', times: ['11 – 1 pm ', '5 – 10 pm'] },
+  { day: 'Sunday',    times: ['11 – 9 pm'] },
 ]
 
 const contactDetails = [
-  { label: 'Phone',        value: '0117 401 6517' },
-  { label: 'Contact',        value: 'contact@khao.restaurant' },
-  { label: 'Instagram',    value: '@khao.restaurant' },
+  { label: 'Phone',     value: '0117 401 6517' },
+  { label: 'Contact',   value: 'contact@khao.restaurant' },
+  { label: 'Instagram', value: '@khao.restaurant' },
 ]
 
 export default function InfoSection() {
@@ -19,12 +19,23 @@ export default function InfoSection() {
           <h2>Opening times</h2>
         </div>
         <ul>
-          {hours.map(({ days, time }) => (
-            <li key={days}>
-              <span>{days}</span>
-              <span>{time}</span>
-            </li>
-          ))}
+          {hours.map(({ day, times }) => {
+            const isClosed = times.length === 1 && times[0] === 'Closed'
+            return (
+              <li key={day}>
+                <span>{day}</span>
+                <span
+                  style={{
+                    color: isClosed ? 'var(--muted)' : 'var(--text)',
+                    fontStyle: isClosed ? 'italic' : 'normal',
+                    fontWeight: isClosed ? 400 : 600,
+                  }}
+                >
+                  {times.join('  ·  ')}
+                </span>
+              </li>
+            )
+          })}
         </ul>
       </div>
 
