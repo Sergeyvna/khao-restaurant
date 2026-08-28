@@ -21,7 +21,7 @@ export default function Hero() {
           </p>
           <div className="actions">
             <a className="btn primary" href="#menu">Browse Menu</a>
-            <a className="btn" href="#contact">Book a Table</a>
+            <a className="btn" href="https://www.opentable.co.uk/r/khao-restaurant-reservations-bristol?restref=512775&lang=en-GB&ot_source=Restaurant%20website">Book a Table</a>
           </div>
         </div>
       </div>
